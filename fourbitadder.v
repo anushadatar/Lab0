@@ -44,13 +44,12 @@ module fourbitAdder
     output carryout,
     output overflow,
     input[0:3] a,
-    input[0:3] b,
-    input carryin
+    input[0:3] b
 );
 
     wire sum0,sum1,sum2,c0,c1,c2;
     
-    ADD add0(sum[0],c0,a[0],b[0],carryin);
+    ADD add0(sum[0],c0,a[0],b[0],0);
     ADD add1(sum[1],c1,a[1],b[1],c0);
     ADD add2(sum[2],c2,a[2],b[2],c1);
     ADD add3(sum[3],carryout,a[3],b[3],c2);
