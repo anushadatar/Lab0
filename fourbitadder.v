@@ -3,6 +3,7 @@
 `define OR or #50
 `define NOT not #50
 `define XOR xor #50
+`define ADD FullAdder #50
 
 module behavioralFullAdder
 (
@@ -39,18 +40,21 @@ endmodule
 
 module fourbitAdder
 (
-    output sum, 
+    output[3:0] sum,
     output carryout,
-    input a0,a1,a2,a3,
-    input b0,b1,b2,b3,
+    output overflow,
+    input[3:0] a,
+    input[3:0] b,
     input carryin
 );
 
-    wire sum1,sum2,sum3,c1,c2,c3;
+    wire c0,c1,c2;
 
-    FullAdder add1(sum1,c1,a0,b0,carryin);
-    FullAdder add2(sum2,c2,a1,b1,c1);
-    FullAdder add3(sum3,c3,a2,b2,c2);
-    FullAdder add4(sum,carryout,a3,b3,c3);
+    `ADD add0(sum[0],c0,a[0],b[0],carryin);
+    `ADD add1(sum[1],c1,a[1],b[1],c0);
+    `ADD add2(sum[2],c2,a[2],b[2],c1);
+    `ADD add3(sum[3],carryout,a[3],b[3],c2);
+
+    `XOR flag(overflow, carryout, c2);
 
 endmodule

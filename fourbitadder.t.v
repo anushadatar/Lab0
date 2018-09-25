@@ -3,30 +3,41 @@
 `include "fourbitadder.v"
 
 module testFourBit();
-    reg a0, a1, a2, a3, b0, b1, b2, b3, carryin, carryout;
-    wire su
-    fourBitAdder adder (sum, carryout, a, b, carryin); // Swap after testing
+
+    reg[3:0] a;
+    reg[3:0 ] b;
+    reg carryin;
+    wire[3:0] sum;
+    wire  carryout, overflow;
+
+    fourbitAdder adder (sum, carryout, overflow, a, b, carryin); // Swap after testing
 
     initial begin
         $dumpfile("fourbitadder.vcd");
         $dumpvars();
-        $display("A  B  C-In | C-Out S | Expected Output");
-        a=0;b=0;carryin=0; #1000
-        $display("%b  %b  %b    | %b     %b | 0   0", a, b, carryin, carryout, sum);
-        a=0;b=0;carryin=1; #1000
-        $display("%b  %b  %b    | %b     %b | 0   1", a, b, carryin, carryout, sum);
-        a=0;b=1;carryin=0; #1000
-        $display("%b  %b  %b    | %b     %b | 0   1", a, b, carryin, carryout, sum);
-        a=0;b=1;carryin=1; #1000
-        $display("%b  %b  %b    | %b     %b | 1   0", a, b, carryin, carryout, sum);
-        a=1;b=0;carryin=0; #1000
-        $display("%b  %b  %b    | %b     %b | 0   1", a, b, carryin, carryout, sum);
-        a=1;b=0;carryin=1; #1000
-        $display("%b  %b  %b    | %b     %b | 1   0", a, b, carryin, carryout, sum);
-        a=1;b=1;carryin=0; #1000
-        $display("%b  %b  %b    | %b     %b | 1   0", a, b, carryin, carryout, sum);
-        a=1;b=1;carryin=1; #1000
-        $display("%b  %b  %b    | %b     %b | 1   1", a, b, carryin, carryout, sum);
+        $display("A3210  B3210 | S3210 | C-Out | OF | E3210 C O");
+        a[3:0] = 4'b0000;b[3:0]=4'b0000;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0000 0 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b1111;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  1110 1 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b0000;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  1111 0 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b0000;b[3:0]=4'b1111;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  1111 0 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b0001;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0000 1 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b0010;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0001 1 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b0100;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0011 1 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b1000;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0111 1 1", a, b, sum, carryout, overflow);
+        $display("WHAAATTTT EMPTTTYYYY SPACEEEE");
+        a[3:0] = 4'b1000;b[3:0]=4'b0001;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  1001 0 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1000;b[3:0]=4'b0111;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  1111 0 0", a, b, sum, carryout, overflow);
+
         $finish();
         end
 endmodule
