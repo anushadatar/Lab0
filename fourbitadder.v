@@ -6,10 +6,10 @@
 
 module behavioralFullAdder
 (
-    output sum, 
+    output sum,
     output carryout,
-    input a, 
-    input b, 
+    input a,
+    input b,
     input carryin
 );
     // Uses concatenation operator and built-in '+'
@@ -19,10 +19,10 @@ endmodule
 
 module FullAdder
 (
-    output sum, 
+    output sum,
     output carryout,
-    input a, 
-    input b, 
+    input a,
+    input b,
     input carryin
 );
     wire out1,out2,out3;
@@ -47,7 +47,7 @@ module fourbitAdder
 );
 
     wire sum1,sum2,sum3,c1,c2,c3;
-    
+
     FullAdder add1(sum1,c1,a0,b0,carryin);
     FullAdder add2(sum2,c2,a1,b1,c1);
     FullAdder add3(sum3,c3,a2,b2,c2);
