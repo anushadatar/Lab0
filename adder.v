@@ -38,7 +38,7 @@ module FullAdder
 
 endmodule
 
-module fourbitAdder
+module FullAdder4bit
 (
     output[3:0] sum,
     output carryout,

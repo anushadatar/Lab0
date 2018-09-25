@@ -1,6 +1,6 @@
 // Adder testbench
 `timescale 1 ns / 1 ps
-`include "fourbitadder.v"
+`include "adder.v"
 
 module testFourBit();
 
@@ -10,7 +10,7 @@ module testFourBit();
     wire[3:0] sum;
     wire  carryout, overflow;
 
-    fourbitAdder adder (sum, carryout, overflow, a, b, carryin); // Swap after testing
+    FullAdder4bit adder (sum, carryout, overflow, a, b, carryin); // Swap after testing
 
     initial begin
         $dumpfile("fourbitadder.vcd");
@@ -32,11 +32,14 @@ module testFourBit();
         $display(" %b   %b |  %b | %b     | %b  |  0011 1 0", a, b, sum, carryout, overflow);
         a[3:0] = 4'b1111;b[3:0]=4'b1000;carryin=0; #1000
         $display(" %b   %b |  %b | %b     | %b  |  0111 1 1", a, b, sum, carryout, overflow);
-        $display("WHAAATTTT EMPTTTYYYY SPACEEEE");
         a[3:0] = 4'b1000;b[3:0]=4'b0001;carryin=0; #1000
         $display(" %b   %b |  %b | %b     | %b  |  1001 0 0", a, b, sum, carryout, overflow);
         a[3:0] = 4'b1000;b[3:0]=4'b0111;carryin=0; #1000
         $display(" %b   %b |  %b | %b     | %b  |  1111 0 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b0001;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0000 110", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1111;b[3:0]=4'b0001;carryin=0; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0000 110", a, b, sum, carryout, overflow);
 
         $finish();
         end
