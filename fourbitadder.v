@@ -54,6 +54,6 @@ module fourbitAdder
     ADD add2(sum[2],c2,a[2],b[2],c1);
     ADD add3(sum[3],carryout,a[3],b[3],c2);
 
-    buf flag(overflow,carryout);
+    XOR flag(overflow, carryout, c2);
 
 endmodule
