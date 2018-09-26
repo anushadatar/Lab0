@@ -46,6 +46,8 @@ module testFourBit();
         $display(" %b   %b |  %b | %b     | %b  |  1011 0 0", a, b, sum, carryout, overflow);
         a[3:0] = 4'b1000;b[3:0]=4'b0111; #1000
         $display(" %b   %b |  %b | %b     | %b  |  1111 0 0", a, b, sum, carryout, overflow);
+        a[3:0] = 4'b1000;b[3:0]=4'b1001; #1000
+        $display(" %b   %b |  %b | %b     | %b  |  0001 1 1", a, b, sum, carryout, overflow);
         a[3:0] = 4'b1010;b[3:0]=4'b1111; #1000
         $display(" %b   %b |  %b | %b     | %b  |  1001 1 0", a, b, sum, carryout, overflow);
 
