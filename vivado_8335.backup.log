@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Sun Sep 23 22:17:23 2018
+# Process ID: 8335
+# Current directory: /home/comparch/Desktop/Lab0
+# Command line: vivado
+# Log file: /home/comparch/Desktop/Lab0/vivado.log
+# Journal file: /home/comparch/Desktop/Lab0/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project lab_0 /home/comparch/Desktop/Lab0/lab_0 -part xc7z010clg400-1
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2018.2/data/ip'.
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:06 . Memory (MB): peak = 6096.730 ; gain = 31.020 ; free physical = 5905 ; free virtual = 8991
+set_property board_part digilentinc.com:zybo:part0:1.0 [current_project]
+add_files -fileset constrs_1 -norecurse /home/comparch/Desktop/Lab0/ZYBO_Master.xdc
+import_files -fileset constrs_1 /home/comparch/Desktop/Lab0/ZYBO_Master.xdc
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Sep 23 22:20:36 2018...
